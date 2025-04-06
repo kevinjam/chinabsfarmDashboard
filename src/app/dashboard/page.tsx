@@ -17,6 +17,7 @@ interface EggData {
 export default async function DashboardPage() {
   let eggData: EggData[] = [];
   let error: string | null = null;
+  
 
   try {
     const response = await fetch('http://localhost:3000/api/eggs');

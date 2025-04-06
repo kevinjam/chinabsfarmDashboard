@@ -17,9 +17,6 @@ interface EggData {
 
 async function fetchEggData(): Promise<EggData[]> {
     try {
-        console.log('Fetching egg data from Google Sheets...');
-        console.log('Spreadsheet ID:', process.env.GOOGLE_SHEETS_SPREADSHEET_ID);
-        console.log('Range:', process.env.GOOGLE_SHEETS_RANGE);
 
         const credentialsJson = Buffer.from(
             process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON || '',

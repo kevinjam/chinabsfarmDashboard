@@ -97,6 +97,8 @@ export default function EggsTableClient({
     XLSX.writeFile(workbook, "eggs-data.xlsx");
   };
 
+  console.log("000000 paginatedData", paginatedData);
+  console.log("totalItems", totalItems);
   return (
     <>
       {/* Search and Filter Section */}

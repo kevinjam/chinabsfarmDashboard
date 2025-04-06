@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react'; // Import signOut
 import { fetchBlogs, addBlog } from '../../../lib/api';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Header from '@/components/Header'; // Import Header
 
 interface Blog {
   _id: string;
@@ -76,6 +77,10 @@ export default function BlogPage() {
     }
   };
 
+  const handleSignOut = () => {
+    signOut({ callbackUrl: '/dashboard/login' });
+  };
+
   if (status === 'loading') {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -88,6 +93,9 @@ export default function BlogPage() {
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
+        <Header onSignOut={handleSignOut} />
+
+        
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">Blog Dashboard</h1>
