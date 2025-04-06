@@ -20,7 +20,12 @@ export default async function DashboardPage() {
   
 
   try {
-    const response = await fetch('http://localhost:3000/api/eggs');
+    const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
+        if (!baseUrl) {
+          throw new Error("NEXT_PUBLIC_API_BASE_URL is not defined");
+        }
+
+        const response = await fetch(`${baseUrl}/api/eggs`); // Use the environment variable
     if (!response.ok) {
       throw new Error('Failed to fetch egg data from the API.');
     }
